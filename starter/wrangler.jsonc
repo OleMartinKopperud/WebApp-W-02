@@ -1,0 +1,55 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+
+  // Navnet på workeren, og subdomenet den får: <name>.workers.dev.
+  // Bytt til noe som er deres.
+  "name": "webapp",
+  "main": "src/worker.tsx",
+
+  // Pinner hvordan runtimen oppfører seg. Å flytte datoen fram kan endre
+  // oppførselen til kode som allerede virker, så gjør det med vilje.
+  "compatibility_date": "2026-05-14",
+  // Slår på et utvalg Node-API-er. better-auth trenger dem (uke 45).
+  "compatibility_flags": ["nodejs_compat"],
+
+  // Statiske filer fra public/. rwsdk forventer at bindingen finnes.
+  "assets": {
+    "binding": "ASSETS",
+    "directory": "public"
+  },
+
+  // Logger hver request, så `wrangler tail` viser hele bildet.
+  "observability": {
+    "enabled": true,
+    "head_sampling_rate": 1
+  },
+
+  // Offentlige variabler. Alle som når workeren kan lese dem, så ingenting
+  // hemmelig havner her. Hemmeligheter: `wrangler secret put NAVN`.
+  "vars": {},
+
+  // D1, Cloudflares SQLite. Fungerer lokalt uten konto: wrangler lager en
+  // SQLite-fil under .wrangler/. `database_id` trengs først når dere skal
+  // deploye, og fylles ut med det `wrangler d1 create <navn>` svarer.
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "webapp-db",
+      "database_id": "__change_me__",
+      "migrations_dir": "drizzle/migrations",
+      // Drizzle v1 legger hver migrasjon i sin egen mappe. Uten dette
+      // mønsteret finner wrangler ingenting, og sier «No migrations to apply».
+      "migrations_pattern": "drizzle/migrations/*/migration.sql"
+    }
+  ]
+
+  // Workers AI. Har ingen lokal emulering, så kallet går alltid til
+  // Cloudflare. Husk `npm run generate` etter at dere slår den på.
+  // "ai": { "binding": "AI", "remote": true },
+
+  // Cron. Alltid UTC. Kjører bare i en deployet worker, aldri i `dev`.
+  // "triggers": { "crons": ["0 7 * * *"] },
+
+  // Objektlagring for filer og bilder.
+  // "r2_buckets": [{ "binding": "R2", "bucket_name": "webapp-files" }]
+}

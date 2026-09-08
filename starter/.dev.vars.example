@@ -1,0 +1,12 @@
+# Kopier denne til .dev.vars (som er gitignorert) når dere trenger den.
+#
+# .dev.vars er hemmeligheter for LOKAL kjøring. I produksjon settes de samme
+# verdiene med `wrangler secret put NAVN`, aldri i wrangler.jsonc, som ligger
+# i git og kan leses av alle.
+#
+# Generér en nøkkel:
+#   openssl rand -hex 32
+#   node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
+
+# BETTER_AUTH_SECRET=""
+# BETTER_AUTH_URL="http://localhost:5173"

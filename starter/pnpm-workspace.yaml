@@ -1,0 +1,18 @@
+# Kun for pnpm. npm leser ikke denne fila, og trenger den ikke.
+#
+# pnpm 10.16+ kjører ikke postinstall-scripts uten at pakken står her:
+#   workerd         uten den starter ikke `pnpm dev`
+#   better-sqlite3  uten den feiler databasetestene på en manglende binær
+#   esbuild         uten den feiler `tsx` og deler av byggekjeden
+allowBuilds:
+  better-sqlite3: true
+  esbuild: true
+  workerd: true
+
+# pnpm holder helt ferske utgivelser i karantene. Disse tre er nyere enn
+# karantenen, og er sluppet gjennom med vilje. Blir lista lengre hos deg, er
+# det pnpm som har skrevet den, og da er det greit å sjekke den inn.
+minimumReleaseAgeExclude:
+  - '@cloudflare/workers-types@5.20260907.1'
+  - '@rolldown/plugin-babel@0.2.4'
+  - lucide-react@1.42.0
