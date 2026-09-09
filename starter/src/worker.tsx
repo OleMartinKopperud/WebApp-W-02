@@ -13,17 +13,15 @@ import { Home } from "@/app/pages/Home";
 export type AppContext = {};
 
 const app = defineApp([
-  // Middleware. Kjører for hver forespørsel, i rekkefølgen de står.
-  setCommonHeaders(),
+	// Middleware. Kjører for hver forespørsel, i rekkefølgen de står.
+	setCommonHeaders(),
 
-  // API-rute. Ligger UTENFOR render(), så svaret er akkurat det handleren
-  // returnerer: JSON, uten HTML-skall rundt.
-  route("/api/status", () =>
-    Response.json({ status: "ok", version: "0.1.0" })
-  ),
+	// API-rute. Ligger UTENFOR render(), så svaret er akkurat det handleren
+	// returnerer: JSON, uten HTML-skall rundt.
+	route("/api/status", () => Response.json({ status: "ok", version: "0.1.0" })),
 
-  // Sider. render(Document, [...]) pakker dem i et helt HTML-dokument.
-  render(Document, [route("/", Home)]),
+	// Sider. render(Document, [...]) pakker dem i et helt HTML-dokument.
+	render(Document, [route("/", Home)]),
 ]);
 
 export default { fetch: app.fetch };

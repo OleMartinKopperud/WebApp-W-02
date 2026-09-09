@@ -13,23 +13,23 @@ import { useEffect, useState } from "react";
  * HTML, og et klikk forsvinner i løse luften.
  */
 export function Counter() {
-  const [count, setCount] = useState(0);
-  const [hydrated, setHydrated] = useState(false);
+	const [count, setCount] = useState(0);
+	const [hydrated, setHydrated] = useState(false);
 
-  // useEffect kjører bare i nettleseren, aldri under server-rendringen.
-  useEffect(() => setHydrated(true), []);
+	// useEffect kjører bare i nettleseren, aldri under server-rendringen.
+	useEffect(() => setHydrated(true), []);
 
-  return (
-    <div className="mt-6 flex items-center gap-3">
-      <button
-        type="button"
-        disabled={!hydrated}
-        onClick={() => setCount(count + 1)}
-        className="rounded-md bg-slate-900 px-4 py-2 text-white hover:bg-slate-700 disabled:opacity-50"
-      >
-        Trykk her
-      </button>
-      <span>Trykket {count} ganger</span>
-    </div>
-  );
+	return (
+		<div className="mt-6 flex items-center gap-3">
+			<button
+				type="button"
+				disabled={!hydrated}
+				onClick={() => setCount(count + 1)}
+				className="rounded-md bg-slate-900 px-4 py-2 text-white hover:bg-slate-700 disabled:opacity-50"
+			>
+				Trykk her
+			</button>
+			<span>Trykket {count} ganger</span>
+		</div>
+	);
 }
