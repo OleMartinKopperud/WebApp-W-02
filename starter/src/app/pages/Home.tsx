@@ -1,5 +1,6 @@
 import { Counter } from "@/components/Counter";
 import { TimeClient } from "@/components/TimeClient";
+import { LoginForm } from "@/components/LoginForm";
 
 /**
  * En server-komponent. Den kjører på serveren, én gang per forespørsel, og
