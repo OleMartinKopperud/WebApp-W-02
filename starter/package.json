@@ -48,9 +48,11 @@
     "zod": "4.5.4"
   },
   "devDependencies": {
+    "@ast-grep/napi-win32-x64-msvc": "^0.45.3",
     "@cloudflare/vite-plugin": "1.54.4",
     "@cloudflare/workers-types": "5.20260907.1",
     "@playwright/test": "1.63.0",
+    "@rolldown/binding-win32-x64-msvc": "^1.2.11",
     "@rolldown/plugin-babel": "0.2.4",
     "@testing-library/jest-dom": "7.0.1",
     "@testing-library/react": "16.3.3",
